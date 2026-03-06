@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Маша ❤️ С 8 марта</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(#ff9ecb,#ffd6e7,#ffffff);
+color:#6b0043;
+text-align:center;
+overflow-x:hidden;
+}
+
+header{
+padding:40px 20px;
+}
+
+h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+h2{
+font-size:20px;
+font-weight:normal;
+}
+
+.section{
+padding:30px 20px;
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.gallery img{
+width:90%;
+max-width:350px;
+margin:15px auto;
+display:block;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+transition:0.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+.card{
+background:white;
+border-radius:20px;
+padding:25px;
+margin:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+font-size:18px;
+}
+
+button{
+margin-top:20px;
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:12px;
+background:#ff3c8c;
+color:white;
+cursor:pointer;
+}
+
+#secret{
+margin-top:20px;
+font-size:20px;
+display:none;
+}
+
+.rose{
+position:fixed;
+top:-50px;
+font-size:28px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🌸 Маша 🌸</h1>
+<h2>С 8 марта</h2>
+
+</header>
+
+<div class="section gallery">
+
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+
+</div>
+
+<div class="section">
+
+<div class="card">
+
+<p>
+Маша, поздравляю тебя с 8 марта!  
+Пусть в твоей жизни будет много счастья, улыбок и тепла.  
+Ты очень красивая, добрая и особенная девушка. 💖
+</p>
+
+<button onclick="openSecret()">Нажми здесь</button>
+
+<div id="secret">
+✨ Пусть все твои мечты сбываются, а каждый день будет наполнен любовью и радостью ✨
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function openSecret(){
+document.getElementById("secret").style.display="block";
+}
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+
+document.querySelectorAll(".section").forEach(el=>{
+observer.observe(el);
+});
+
+function rose(){
+const r=document.createElement("div");
+r.className="rose";
+r.innerHTML="🌹";
+
+r.style.left=Math.random()*100+"vw";
+r.style.fontSize=(20+Math.random()*20)+"px";
+r.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.body.appendChild(r);
+
+setTimeout(()=>{r.remove()},8000);
+}
+
+setInterval(rose,400);
+
+</script>
+
+</body>
+</html>
